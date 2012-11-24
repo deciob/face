@@ -19,7 +19,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
         return _this.getLoginStatus(_this.options.callback);
       });
       $('input').on("keydown", function(e) {
-        return console.log("xxxxxxxxxxxx", e);
+        return _this.filterFriends(e.target.value);
       });
       this.bind("onGetFriends", this.builFriendList);
     }
@@ -47,6 +47,20 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
 
     Friends.prototype.appendDomFragment = function(fragment) {
       return $("#face-list").append(fragment);
+    };
+
+    Friends.prototype.filterFriends = function(filter) {
+      var _this = this;
+      return $("#face-list").each(function(idx, el) {
+        var friend, li;
+        li = $(el);
+        friend = li.find('p').val().toLowerCase();
+        if (friend.indexOf(filter.toLowerCase(), 0) === -1) {
+          return li.hide();
+        } else {
+          return li.show();
+        }
+      });
     };
 
     Friends.prototype.transitToWaitState = function() {
