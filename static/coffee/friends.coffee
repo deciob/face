@@ -9,7 +9,9 @@ define [
 
   class Friends
 
-    # Mixin an facebook provider
+    # Mixin an event emitter
+    asEvented.call @prototype
+    # Mixin a facebook provider
     _(@prototype).extend facebook
 
     constructor: (@options) ->
@@ -19,8 +21,7 @@ define [
         e.preventDefault()
         @getLoginStatus @options.callback 
       
-      asEvented.bind "onGetFriends", @go
-
+      @bind "onGetFriends", @go
 
     go: (args) ->
       console.debug "friends:go", args

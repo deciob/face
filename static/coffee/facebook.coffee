@@ -1,7 +1,6 @@
 define [
   'jquery'
-  'asevented'
-], ($, asEvented) ->
+], ($) ->
   'use strict'
 
   window.fbAsyncInit = ->
@@ -41,10 +40,10 @@ define [
         login callback
 
   getFriends = ->
-    FB.api "/me/friends", (response) ->
+    FB.api "/me/friends", (response) =>
       if response.data
         console.debug response.data
-        asEvented.trigger "onGetFriends", [response.data]
+        @trigger "onGetFriends", [response.data]
       else
         console.debug "facebook:getFriends:Error!"
 

@@ -6,6 +6,8 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
   var Friends;
   return Friends = (function() {
 
+    asEvented.call(Friends.prototype);
+
     _(Friends.prototype).extend(facebook);
 
     function Friends(options) {
@@ -16,7 +18,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
         e.preventDefault();
         return _this.getLoginStatus(_this.options.callback);
       });
-      asEvented.bind("onGetFriends", this.go);
+      this.bind("onGetFriends", this.go);
     }
 
     Friends.prototype.go = function(args) {
