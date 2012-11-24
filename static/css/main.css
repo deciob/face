@@ -54,6 +54,10 @@ a {
   background-position: -3px -3px;
 }
 
+li.friend {
+ padding-top: 10px;
+}
+
 li.friend > p {
   height: 50px;
 }
