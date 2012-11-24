@@ -42,9 +42,10 @@ define [
         login callback
 
   getFriends = ->
+    console.debug "facebook:getFriends", @
     FB.api "/me/friends", (response) =>
       if response.data
-        console.debug response.data
+        console.debug response.data, @
         @trigger "onGetFriends", [response.data]
       else
         console.debug "facebook:getFriends:Error!"

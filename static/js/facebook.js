@@ -49,9 +49,10 @@ define(['jquery'], function($) {
   };
   getFriends = function() {
     var _this = this;
+    console.debug("facebook:getFriends", this);
     return FB.api("/me/friends", function(response) {
       if (response.data) {
-        console.debug(response.data);
+        console.debug(response.data, _this);
         return _this.trigger("onGetFriends", [response.data]);
       } else {
         return console.debug("facebook:getFriends:Error!");
