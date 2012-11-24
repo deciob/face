@@ -39,9 +39,11 @@
         // Bootstrap the application
         require(['jquery', 'facebook'], function ($, facebook) {
 
-            window.fbAsyncInit();
+            
     
             $(document).ready(function() {
+
+                window.fbAsyncInit();
     
                 $("#fb-root").on("click", function(e) {
                     facebook.getLoginStatus();
