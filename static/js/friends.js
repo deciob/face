@@ -55,7 +55,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
       return $("#face-list").children().each(function(idx, el) {
         var friend, li;
         li = $(el);
-        friend = li.find('p').val().toLowerCase();
+        friend = li.find('p').html().toLowerCase();
         if (friend.indexOf(filter.toLowerCase(), 0) === -1) {
           return li.hide();
         } else {
