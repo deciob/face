@@ -12,7 +12,7 @@ define [
       cookie: true # enable cookies to allow the server to access the session
       xfbml: true # parse XFBML  
   
-  login = (callback) ->
+  login = (callback) =>
     #console.debug "login", FB
     FB.login (response) =>
       if response.authResponse

@@ -3,7 +3,8 @@
 define(['jquery'], function($) {
   'use strict';
 
-  var facebook, getFriends, getLoginStatus, login, testAPI;
+  var facebook, getFriends, getLoginStatus, login, testAPI,
+    _this = this;
   window.fbAsyncInit = function() {
     return FB.init({
       appId: "463955970313826",
@@ -14,7 +15,6 @@ define(['jquery'], function($) {
     });
   };
   login = function(callback) {
-    var _this = this;
     return FB.login(function(response) {
       if (response.authResponse) {
         return callback.call(_this);
