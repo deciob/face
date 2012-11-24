@@ -16,6 +16,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
       console.debug("friends:constructor", this);
       options.login_link.on("click", function(e) {
         e.preventDefault();
+        _this.transitToWaitState();
         return _this.getLoginStatus(_this.options.callback);
       });
       this.bind("onGetFriends", this.builFriendList);
@@ -24,8 +25,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     Friends.prototype.builFriendList = function(args) {
       var comp, frags;
       console.debug("friends:builFriendList", args);
-      $("#login-wrapper").hide();
-      $("#friends-wrapper").show();
+      transitToShowState();
       comp = horn.f.compose([this.appendDomFragment, this.buildDomFragment]);
       return frags = horn.f.map(comp, args[0]);
     };
@@ -48,6 +48,16 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     Friends.prototype.appendDomFragment = function(fragment) {
       console.log("xxxxxxxxxx", fragment);
       return $("#face-list").append(fragment);
+    };
+
+    Friends.prototype.transitToWaitState = function() {
+      $("#login-info-entry").hide();
+      return $("#login-info-wait").show();
+    };
+
+    Friends.prototype.transitToShowState = function() {
+      $("#login-wrapper").hide();
+      return $("#friends-wrapper").show();
     };
 
     return Friends;

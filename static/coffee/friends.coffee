@@ -19,6 +19,7 @@ define [
 
       options.login_link.on "click", (e) => 
         e.preventDefault()
+        @transitToWaitState()
         @getLoginStatus @options.callback 
       
       @bind "onGetFriends", @builFriendList
@@ -27,8 +28,7 @@ define [
       console.debug "friends:builFriendList", args
       #frags = horn.f.map(@buildDomFragment, args[0])
 
-      $("#login-wrapper").hide()
-      $("#friends-wrapper").show()
+      transitToShowState()
 
       comp = horn.f.compose([@appendDomFragment, @buildDomFragment])
       frags = horn.f.map(comp, args[0])
@@ -53,4 +53,11 @@ define [
       $("#face-list").append fragment
 
 
+    transitToWaitState: ->
+      $("#login-info-entry").hide()
+      $("#login-info-wait").show()
+
+    transitToShowState: ->
+      $("#login-wrapper").hide()
+      $("#friends-wrapper").show()
 
