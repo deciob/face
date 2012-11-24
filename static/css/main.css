@@ -1,3 +1,40 @@
 ul, ol {
   list-style-position: inside;
 }
+
+a.app.facebook {
+  background-image: url(https://d3vp9zdgypbf1g.cloudfront.net/assets/buttons/join-ace8f5eeaa02d24e0dda16b7b6e1c389.png);
+}
+
+a.app {
+  float: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  height: 45px;
+  line-height: 43px;
+  text-align: center;
+  padding-left: 30px;
+  width: 266px;
+  margin-bottom: 10px;
+}
+
+#face-root {
+  display:block;
+  position:absolute;
+  padding: 2em 1em 2em 1em;
+  top:30%;
+  left:10%;
+  width:80%;
+  background-color: #F8F8F8;
+}
+
+#login {
+
+}
+
+a {
+  outline: none;
+  color: #54A2B8;
+  text-decoration: none;
+}
