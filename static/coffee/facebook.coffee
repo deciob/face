@@ -26,7 +26,7 @@ define [
     FB.api "/me", (response) ->
       console.log "Good to see you, " + response.name + "."
   
-  # Get login status and try to log-in if not already.
+  # Get login status, if not logged-in try to log-in and fire callback.
   getLoginStatus = (callback) ->
     FB.getLoginStatus (response) ->
       if response.status is "connected"

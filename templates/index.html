@@ -38,17 +38,22 @@
 
 
         // Bootstrap the application
-        require(['jquery', 'facebook'], function ($, f) {
+        require(['jquery', 'facebook', 'friends'], function ($, f, Friends) {
 
             
     
             $(document).ready(function() {
 
                 window.fbAsyncInit();
+
+                var options = {
+                  login_link: $("#login")
+                };
+                var friends = new Friends(options);
     
-                $("#fb-root").on("click", function(e) {
-                    f.getLoginStatus(f.getFriends);
-                });
+               //$("#fb-root").on("click", function(e) {
+               //    f.getLoginStatus(f.getFriends);
+               //});
     
             });
     
@@ -69,7 +74,11 @@
 </head>
 <body>
 
-    <div id="fb-root">Click Me!</div>
+    <section id="face-root">
+      <div id="login-wrapper">
+          <a id="login" class="app facebook" href="">Sign in</a>
+      </div>
+    </section>
 
 </body>
 </html>
