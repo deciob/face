@@ -33,7 +33,7 @@ define [
     FB.getLoginStatus (response) =>
       if response.status is "connected"
         console.debug "connected"
-        callback()
+        callback.call @
       else if response.status is "not_authorized"
         console.debug "not_authorized"
         login callback
