@@ -47,7 +47,7 @@ define [
       # For every user build a `li` fragment and append it to the DOM.
       # Uses function composition, from right to left. 
       comp = horn.f.compose([@appendDomFragment, @buildDomFragment])
-      horn.f.map(comp, args[0])
+      horn.f.doall(comp, args[0])
     
     buildDomFragment: (user) ->
       #console.debug "friends:buildDomFragment", user

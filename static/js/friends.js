@@ -28,7 +28,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
       var comp;
       this.transitToShowState();
       comp = horn.f.compose([this.appendDomFragment, this.buildDomFragment]);
-      return horn.f.map(comp, args[0]);
+      return horn.f.doall(comp, args[0]);
     };
 
     Friends.prototype.buildDomFragment = function(user) {
