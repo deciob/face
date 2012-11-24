@@ -26,12 +26,15 @@
                 horn: 'vendor/horn/horn',
                 asevented: 'vendor/asevented-0.3.3'
             },
-            // Underscore is not AMD-capable per default,
+            // Underscore and asevented do not AMD-capable per default,
             // so we need to use the AMD wrapping of RequireJS
             shim: {
                 underscore: {
                     exports: '_'
                 },
+                asevented: {
+                    exports: 'asEvented'
+                }
             }
 
         });
