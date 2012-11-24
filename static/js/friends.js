@@ -52,7 +52,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     Friends.prototype.filterFriends = function(filter) {
       var _this = this;
       console.debug('xxxxxxxxxx', filter);
-      return $("#face-list").each(function(idx, el) {
+      return $("#face-list").children().each(function(idx, el) {
         var friend, li;
         li = $(el);
         friend = li.find('p').val().toLowerCase();

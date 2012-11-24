@@ -65,7 +65,7 @@ define [
     
     filterFriends: (filter) ->
       console.debug 'xxxxxxxxxx', filter
-      $("#face-list").each (idx, el) =>
+      $("#face-list").children().each (idx, el) =>
         li = $(el)
         friend = li.find('p').val().toLowerCase()
         if friend.indexOf(filter.toLowerCase(), 0) == -1
