@@ -16,7 +16,6 @@ define(['jquery'], function($) {
   login = function(callback) {
     return FB.login(function(response) {
       if (response.authResponse) {
-        console.debug("login # connected");
         return callback();
       } else {
         return console.debug("login # cancelled");
@@ -33,13 +32,10 @@ define(['jquery'], function($) {
     var _this = this;
     return FB.getLoginStatus(function(response) {
       if (response.status === "connected") {
-        console.debug("connected");
         return callback.call(_this);
       } else if (response.status === "not_authorized") {
-        console.debug("not_authorized");
         return login(callback);
       } else {
-        console.debug("not_logged_in");
         return login(callback);
       }
     });

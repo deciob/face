@@ -16,7 +16,7 @@ define [
     #console.debug "login", FB
     FB.login (response) ->
       if response.authResponse
-        console.debug "login # connected"
+        #console.debug "login # connected"
         callback()
       else
         console.debug "login # cancelled"
@@ -31,14 +31,14 @@ define [
     #console.debug "facebook:getLoginStatus", @
     FB.getLoginStatus (response) =>
       if response.status is "connected"
-        console.debug "connected"
+        #console.debug "connected"
         # Calling `callback` with a `Friends` instance context.
         callback.call @
       else if response.status is "not_authorized"
-        console.debug "not_authorized"
+        #console.debug "not_authorized"
         login callback
       else
-        console.debug "not_logged_in"
+        #console.debug "not_logged_in"
         login callback
 
   getFriends = ->

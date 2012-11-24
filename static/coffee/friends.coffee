@@ -53,11 +53,13 @@ define [
       e = horn.dom.el
       img = e.img 
         "src": "http://graph.facebook.com/#{user.id}/picture"
-        "alt": user.name
-        "className": "img-placeholder no-padding",
+        "alt": user.name,
         []
+      div = e.div
+        "className": "img-placeholder no-padding", 
+        [img]
       p = e.p {}, [user.name]
-      e.li {"className": "friend"}, [img, p]
+      e.li {"className": "friend"}, [div, p]
 
     appendDomFragment: (fragment) ->
       $("#face-list").append fragment

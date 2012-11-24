@@ -32,17 +32,19 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     };
 
     Friends.prototype.buildDomFragment = function(user) {
-      var e, img, p;
+      var div, e, img, p;
       e = horn.dom.el;
       img = e.img({
         "src": "http://graph.facebook.com/" + user.id + "/picture",
-        "alt": user.name,
-        "className": "img-placeholder no-padding"
+        "alt": user.name
       }, []);
+      div = e.div({
+        "className": "img-placeholder no-padding"
+      }, [img]);
       p = e.p({}, [user.name]);
       return e.li({
         "className": "friend"
-      }, [img, p]);
+      }, [div, p]);
     };
 
     Friends.prototype.appendDomFragment = function(fragment) {
