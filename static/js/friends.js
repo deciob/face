@@ -19,7 +19,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
         return _this.getLoginStatus(_this.options.callback);
       });
       $('input').on("keyup", function(e) {
-        return _this.filterFriends(e.target.value);
+        return _this.filterFriends($("#face-list"), e.target.value);
       });
       this.bind("onGetFriends", this.builFriendList);
     }
@@ -49,10 +49,9 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
       return $("#face-list").append(fragment);
     };
 
-    Friends.prototype.filterFriends = function(filter) {
+    Friends.prototype.filterFriends = function(face_list, filter) {
       var _this = this;
-      console.debug('xxxxxxxxxx', filter);
-      return $("#face-list").children().each(function(idx, el) {
+      return face_list.children().each(function(idx, el) {
         var friend, li;
         li = $(el);
         friend = li.find('p').html().toLowerCase();

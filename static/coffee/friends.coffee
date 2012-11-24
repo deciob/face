@@ -37,7 +37,7 @@ define [
         # For more details and source code see the facebook module.
         @getLoginStatus @options.callback 
       $('input').on "keyup", (e) =>
-        @filterFriends e.target.value
+        @filterFriends $("#face-list"), e.target.value
       # When and if the facebook api comes back with friends, build the list.
       @bind "onGetFriends", @builFriendList
 
@@ -61,20 +61,15 @@ define [
 
     appendDomFragment: (fragment) ->
       $("#face-list").append fragment
-
-    
-    filterFriends: (filter) ->
-      console.debug 'xxxxxxxxxx', filter
-      $("#face-list").children().each (idx, el) =>
+  
+    filterFriends: (face_list, filter) ->
+      face_list.children().each (idx, el) =>
         li = $(el)
         friend = li.find('p').html().toLowerCase()
         if friend.indexOf(filter.toLowerCase(), 0) == -1
           li.hide()
         else
           li.show()
-
-
-
 
     transitToWaitState: ->
       $("#login-info-entry").hide()
