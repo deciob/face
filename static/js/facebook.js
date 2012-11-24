@@ -3,7 +3,7 @@
 define(['jquery'], function($) {
   'use strict';
 
-  var facebook, getLoginStatus, login, testAPI;
+  var facebook, getFriends, getLoginStatus, login, testAPI;
   window.fbAsyncInit = function() {
     console.debug("window.fbAsyncInit");
     return FB.init({
@@ -14,12 +14,12 @@ define(['jquery'], function($) {
       xfbml: true
     });
   };
-  login = function() {
+  login = function(callback) {
     console.debug("login", FB);
     return FB.login(function(response) {
       if (response.authResponse) {
         console.debug("login # connected");
-        return testAPI();
+        return callback();
       } else {
         return console.debug("login # cancelled");
       }
@@ -31,23 +31,33 @@ define(['jquery'], function($) {
       return console.log("Good to see you, " + response.name + ".");
     });
   };
-  getLoginStatus = function() {
+  getLoginStatus = function(callback) {
     return FB.getLoginStatus(function(response) {
       if (response.status === "connected") {
         console.debug("connected");
-        return testAPI();
+        return callback();
       } else if (response.status === "not_authorized") {
         console.debug("not_authorized");
-        return login();
+        return login(callback);
       } else {
         console.debug("not_logged_in");
-        return login();
+        return login(callback);
+      }
+    });
+  };
+  getFriends = function() {
+    return FB.api("/me/friends", function(response) {
+      if (response.data) {
+        return console.debug(response.data);
+      } else {
+        return console.debug("facebook:getFriends:Error!");
       }
     });
   };
   return facebook = {
     login: login,
     testAPI: testAPI,
-    getLoginStatus: getLoginStatus
+    getLoginStatus: getLoginStatus,
+    getFriends: getFriends
   };
 });

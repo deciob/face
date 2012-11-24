@@ -12,12 +12,12 @@ define [
       cookie: true # enable cookies to allow the server to access the session
       xfbml: true # parse XFBML  
   
-  login = ->
+  login = (callback) ->
     console.debug "login", FB
     FB.login (response) ->
       if response.authResponse
         console.debug "login # connected"
-        testAPI()
+        callback()
       else
         console.debug "login # cancelled"
 
@@ -27,19 +27,27 @@ define [
       console.log "Good to see you, " + response.name + "."
   
   # Get login status and try to log-in if not already.
-  getLoginStatus = ->
+  getLoginStatus = (callback) ->
     FB.getLoginStatus (response) ->
       if response.status is "connected"
         console.debug "connected"
-        testAPI()
+        callback()
       else if response.status is "not_authorized"
         console.debug "not_authorized"
-        login()
+        login callback
       else
         console.debug "not_logged_in"
-        login()
+        login callback
+
+  getFriends = ->
+    FB.api "/me/friends", (response) ->
+      if response.data
+        console.debug response.data
+      else
+        console.debug "facebook:getFriends:Error!"
 
   facebook = 
     login: login
     testAPI: testAPI
     getLoginStatus: getLoginStatus
+    getFriends: getFriends
