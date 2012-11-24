@@ -18,6 +18,9 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
         _this.transitToWaitState();
         return _this.getLoginStatus(_this.options.callback);
       });
+      $('input').on("keydown", function(e) {
+        return console.log("xxxxxxxxxxxx", e);
+      });
       this.bind("onGetFriends", this.builFriendList);
     }
 

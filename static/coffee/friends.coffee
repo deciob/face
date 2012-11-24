@@ -35,7 +35,9 @@ define [
         # `getLoginStatus` first checks if the user is logged-in,
         # and after successful login the callback is fired.
         # For more details and source code see the facebook module.
-        @getLoginStatus @options.callback      
+        @getLoginStatus @options.callback 
+      $('input').on "keydown", (e) =>
+        console.log "xxxxxxxxxxxx", e    
       # When and if the facebook api comes back with friends, build the list.
       @bind "onGetFriends", @builFriendList
 
