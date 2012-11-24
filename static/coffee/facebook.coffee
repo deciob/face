@@ -28,11 +28,11 @@ define [
   
   # Get login status, if not logged-in try to log-in and fire callback.
   getLoginStatus = (callback) ->
-    #@trigger "onGetFriends", ["xxxxx"]
     console.debug "facebook:getLoginStatus", @
     FB.getLoginStatus (response) =>
       if response.status is "connected"
         console.debug "connected"
+        # Calling `callback` with a `Friends` instance context.
         callback.call @
       else if response.status is "not_authorized"
         console.debug "not_authorized"

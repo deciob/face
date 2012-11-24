@@ -18,11 +18,24 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
         e.preventDefault();
         return _this.getLoginStatus(_this.options.callback);
       });
-      this.bind("onGetFriends", this.go);
+      this.bind("onGetFriends", this.builFriendList);
     }
 
-    Friends.prototype.go = function(args) {
-      return console.debug("friends:go", args);
+    Friends.prototype.builFriendList = function(args) {
+      console.debug("friends:builFriendList", args);
+      return this.buildDomFragment(args);
+    };
+
+    Friends.prototype.buildDomFragment = function(data) {
+      var e, img, li;
+      e = horn.dom.el;
+      img = e.img({
+        "src": "xxx"
+      });
+      li = e.li({
+        "className": "friend"
+      });
+      return console.log("zzzzzzzzzz", img, li);
     };
 
     return Friends;
