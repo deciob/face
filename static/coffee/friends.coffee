@@ -25,8 +25,12 @@ define [
 
     builFriendList: (args) ->
       console.debug "friends:builFriendList", args
-      frags = horn.f.map(@buildDomFragment, args[0])
-      console.log "xxxxxxxxxx", frags
+      #frags = horn.f.map(@buildDomFragment, args[0])
+
+      comp = horn.f.compose([@appendDomFragment, @buildDomFragment])
+      frags = horn.f.map(comp, args[0])
+
+      
       
 
     buildDomFragment: (user) ->
@@ -39,6 +43,11 @@ define [
         []
       p = e.p {}, [user.name]
       e.li {"className": "friend"}, [img, p]
+
+    appendDomFragment: (fragment) ->
+      console.log "xxxxxxxxxx", fragment
+      # TODO: hardcoding selector for now....
+      $("#face-list").append fragment
 
 
 

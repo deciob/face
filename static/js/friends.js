@@ -22,10 +22,10 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     }
 
     Friends.prototype.builFriendList = function(args) {
-      var frags;
+      var comp, frags;
       console.debug("friends:builFriendList", args);
-      frags = horn.f.map(this.buildDomFragment, args[0]);
-      return console.log("xxxxxxxxxx", frags);
+      comp = horn.f.compose([this.appendDomFragment, this.buildDomFragment]);
+      return frags = horn.f.map(comp, args[0]);
     };
 
     Friends.prototype.buildDomFragment = function(user) {
@@ -41,6 +41,11 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
       return e.li({
         "className": "friend"
       }, [img, p]);
+    };
+
+    Friends.prototype.appendDomFragment = function(fragment) {
+      console.log("xxxxxxxxxx", fragment);
+      return $("#face-list").append(fragment);
     };
 
     return Friends;
