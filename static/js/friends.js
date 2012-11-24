@@ -24,12 +24,13 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     Friends.prototype.builFriendList = function(args) {
       var frags;
       console.debug("friends:builFriendList", args);
-      frags = horn.f.map(this.buildDomFragment, args);
+      frags = horn.f.map(this.buildDomFragment, args[0]);
       return console.log("xxxxxxxxxx", frags);
     };
 
     Friends.prototype.buildDomFragment = function(user) {
       var e, img, p;
+      console.debug("friends:buildDomFragment", user);
       e = horn.dom.el;
       img = e.img({
         "src": "http://graph.facebook.com/" + user.id + "/picture",

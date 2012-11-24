@@ -25,11 +25,12 @@ define [
 
     builFriendList: (args) ->
       console.debug "friends:builFriendList", args
-      frags = horn.f.map(@buildDomFragment, args)
+      frags = horn.f.map(@buildDomFragment, args[0])
       console.log "xxxxxxxxxx", frags
       
 
     buildDomFragment: (user) ->
+      console.debug "friends:buildDomFragment", user
       e = horn.dom.el
       img = e.img 
         "src": "http://graph.facebook.com/#{user.id}/picture"
