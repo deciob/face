@@ -18,7 +18,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
         _this.transitToWaitState();
         return _this.getLoginStatus(_this.options.callback);
       });
-      $('input').on("keydown", function(e) {
+      $('input').on("keyup", function(e) {
         return _this.filterFriends(e.target.value);
       });
       this.bind("onGetFriends", this.builFriendList);
@@ -51,6 +51,7 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
 
     Friends.prototype.filterFriends = function(filter) {
       var _this = this;
+      console.debug('xxxxxxxxxx', filter);
       return $("#face-list").each(function(idx, el) {
         var friend, li;
         li = $(el);

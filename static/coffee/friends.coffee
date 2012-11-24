@@ -36,7 +36,7 @@ define [
         # and after successful login the callback is fired.
         # For more details and source code see the facebook module.
         @getLoginStatus @options.callback 
-      $('input').on "keydown", (e) =>
+      $('input').on "keyup", (e) =>
         @filterFriends e.target.value
       # When and if the facebook api comes back with friends, build the list.
       @bind "onGetFriends", @builFriendList
@@ -64,6 +64,7 @@ define [
 
     
     filterFriends: (filter) ->
+      console.debug 'xxxxxxxxxx', filter
       $("#face-list").each (idx, el) =>
         li = $(el)
         friend = li.find('p').val().toLowerCase()
