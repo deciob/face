@@ -27,6 +27,9 @@ define [
       console.debug "friends:builFriendList", args
       #frags = horn.f.map(@buildDomFragment, args[0])
 
+      $("#login-wrapper").hide()
+      $("#friends-wrapper").show()
+
       comp = horn.f.compose([@appendDomFragment, @buildDomFragment])
       frags = horn.f.map(comp, args[0])
 

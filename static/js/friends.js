@@ -24,6 +24,8 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     Friends.prototype.builFriendList = function(args) {
       var comp, frags;
       console.debug("friends:builFriendList", args);
+      $("#login-wrapper").hide();
+      $("#friends-wrapper").show();
       comp = horn.f.compose([this.appendDomFragment, this.buildDomFragment]);
       return frags = horn.f.map(comp, args[0]);
     };
