@@ -44,7 +44,8 @@ define [
     builFriendList: (args) ->
       #console.debug "friends:builFriendList", args
       @transitToShowState()
-      # For every user build a `li` fragment and append it to the DOM. 
+      # For every user build a `li` fragment and append it to the DOM.
+      # Uses function composition, from right to left. 
       comp = horn.f.compose([@appendDomFragment, @buildDomFragment])
       horn.f.map(comp, args[0])
     

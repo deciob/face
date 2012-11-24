@@ -43,8 +43,6 @@
         // Bootstrap the application
         require(['jquery', 'facebook', 'friends'], function ($, f, Friends) {
 
-            
-    
             $(document).ready(function() {
 
                 window.fbAsyncInit();
@@ -54,10 +52,6 @@
                   callback: f.getFriends
                 };
                 var friends = new Friends(options);
-    
-               //$("#fb-root").on("click", function(e) {
-               //    f.getLoginStatus(f.getFriends);
-               //});
     
             });
     
