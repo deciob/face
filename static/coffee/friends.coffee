@@ -28,7 +28,7 @@ define [
       console.debug "friends:builFriendList", args
       #frags = horn.f.map(@buildDomFragment, args[0])
 
-      transitToShowState()
+      @transitToShowState()
 
       comp = horn.f.compose([@appendDomFragment, @buildDomFragment])
       frags = horn.f.map(comp, args[0])
