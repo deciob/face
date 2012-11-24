@@ -25,20 +25,19 @@ define [
 
     builFriendList: (args) ->
       console.debug "friends:builFriendList", args
-      @buildDomFragment(args)
-      #<li class="friend"><div class="img-placeholder male no-padding">
-      #<img src="https://graph.facebook.com/1534405209/picture" alt="Alberto Nityanand Cogliani">
-      #</div>
-      #<p>Alberto Nityanand Cogliani</p>
-      #<div class="tag-icons">
-      #<div class="smartphone tag-icon" data-content="Alberto has a smartphone."></div>
-      #</div></li>
+      frags = horn.f.map(@buildDomFragment, args)
+      console.log "xxxxxxxxxx", frags
+      
 
-    buildDomFragment: (data) ->
+    buildDomFragment: (user) ->
       e = horn.dom.el
-      img = e.img {"src": "xxx"}
-      li = e.li {"className": "friend"}
-      console.log "zzzzzzzzzz", img, li
+      img = e.img 
+        "src": "http://graph.facebook.com/#{user.id}/picture"
+        "alt": user.name
+        "className": "img-placeholder no-padding",
+        []
+      p = e.p {}, [user.name]
+      e.li {"className": "friend"}, [img, p]
 
 
 
