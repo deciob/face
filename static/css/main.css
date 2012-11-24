@@ -43,3 +43,12 @@ a {
   margin-left: 340px;
   font-size: 1.5em;
 }
+
+.img-placeholder {
+  float: left;
+}
+
+.img-placeholder.no-padding {
+  padding: 0px;
+  background-position: -3px -3px;
+}
