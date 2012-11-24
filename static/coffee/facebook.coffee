@@ -14,10 +14,10 @@ define [
   
   login = (callback) ->
     #console.debug "login", FB
-    FB.login (response) ->
+    FB.login (response) =>
       if response.authResponse
         #console.debug "login # connected"
-        callback()
+        callback.call @
       else
         console.debug "login # cancelled"
 

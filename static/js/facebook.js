@@ -14,9 +14,10 @@ define(['jquery'], function($) {
     });
   };
   login = function(callback) {
+    var _this = this;
     return FB.login(function(response) {
       if (response.authResponse) {
-        return callback();
+        return callback.call(_this);
       } else {
         return console.debug("login # cancelled");
       }
