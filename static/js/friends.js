@@ -13,7 +13,6 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     function Friends(options) {
       var _this = this;
       this.options = options;
-      console.debug("friends:constructor", this);
       options.login_link.on("click", function(e) {
         e.preventDefault();
         _this.transitToWaitState();
@@ -23,16 +22,14 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     }
 
     Friends.prototype.builFriendList = function(args) {
-      var comp, frags;
-      console.debug("friends:builFriendList", args);
+      var comp;
       this.transitToShowState();
       comp = horn.f.compose([this.appendDomFragment, this.buildDomFragment]);
-      return frags = horn.f.map(comp, args[0]);
+      return horn.f.map(comp, args[0]);
     };
 
     Friends.prototype.buildDomFragment = function(user) {
       var e, img, p;
-      console.debug("friends:buildDomFragment", user);
       e = horn.dom.el;
       img = e.img({
         "src": "http://graph.facebook.com/" + user.id + "/picture",
@@ -46,7 +43,6 @@ define(['jquery', 'underscore', 'asevented', 'horn', 'facebook'], function($, _,
     };
 
     Friends.prototype.appendDomFragment = function(fragment) {
-      console.log("xxxxxxxxxx", fragment);
       return $("#face-list").append(fragment);
     };
 

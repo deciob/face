@@ -4,7 +4,7 @@ define [
   'use strict'
 
   window.fbAsyncInit = ->
-    console.debug "window.fbAsyncInit"
+    #console.debug "window.fbAsyncInit"
     FB.init
       appId: "463955970313826" # App ID
       channelUrl: "http://radiant-wave-5172.herokuapp.com/channel" # Channel File
@@ -13,7 +13,7 @@ define [
       xfbml: true # parse XFBML  
   
   login = (callback) ->
-    console.debug "login", FB
+    #console.debug "login", FB
     FB.login (response) ->
       if response.authResponse
         console.debug "login # connected"
@@ -28,7 +28,7 @@ define [
   
   # Get login status, if not logged-in try to log-in and fire callback.
   getLoginStatus = (callback) ->
-    console.debug "facebook:getLoginStatus", @
+    #console.debug "facebook:getLoginStatus", @
     FB.getLoginStatus (response) =>
       if response.status is "connected"
         console.debug "connected"
@@ -42,13 +42,14 @@ define [
         login callback
 
   getFriends = ->
-    console.debug "facebook:getFriends", @
+    #console.debug "facebook:getFriends", @
     FB.api "/me/friends", (response) =>
       if response.data
-        console.debug response.data, @
+        #console.debug response.data, @
         @trigger "onGetFriends", [response.data]
       else
         console.debug "facebook:getFriends:Error!"
+
 
   facebook = 
     login: login

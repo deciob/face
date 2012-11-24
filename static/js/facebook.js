@@ -5,7 +5,6 @@ define(['jquery'], function($) {
 
   var facebook, getFriends, getLoginStatus, login, testAPI;
   window.fbAsyncInit = function() {
-    console.debug("window.fbAsyncInit");
     return FB.init({
       appId: "463955970313826",
       channelUrl: "http://radiant-wave-5172.herokuapp.com/channel",
@@ -15,7 +14,6 @@ define(['jquery'], function($) {
     });
   };
   login = function(callback) {
-    console.debug("login", FB);
     return FB.login(function(response) {
       if (response.authResponse) {
         console.debug("login # connected");
@@ -33,7 +31,6 @@ define(['jquery'], function($) {
   };
   getLoginStatus = function(callback) {
     var _this = this;
-    console.debug("facebook:getLoginStatus", this);
     return FB.getLoginStatus(function(response) {
       if (response.status === "connected") {
         console.debug("connected");
@@ -49,10 +46,8 @@ define(['jquery'], function($) {
   };
   getFriends = function() {
     var _this = this;
-    console.debug("facebook:getFriends", this);
     return FB.api("/me/friends", function(response) {
       if (response.data) {
-        console.debug(response.data, _this);
         return _this.trigger("onGetFriends", [response.data]);
       } else {
         return console.debug("facebook:getFriends:Error!");
