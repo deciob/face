@@ -12,7 +12,7 @@ define [
       cookie: true # enable cookies to allow the server to access the session
       xfbml: true # parse XFBML  
   
-  login = (callback) =>
+  login = (callback) ->
     #console.debug "login", FB
     FB.login (response) =>
       if response.authResponse
@@ -36,10 +36,10 @@ define [
         callback.call @
       else if response.status is "not_authorized"
         #console.debug "not_authorized"
-        login callback
+        login.call @, callback
       else
         #console.debug "not_logged_in"
-        login callback
+        login.call @, callback
 
   getFriends = ->
     #console.debug "facebook:getFriends", @

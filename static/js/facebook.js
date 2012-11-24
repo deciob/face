@@ -3,8 +3,7 @@
 define(['jquery'], function($) {
   'use strict';
 
-  var facebook, getFriends, getLoginStatus, login, testAPI,
-    _this = this;
+  var facebook, getFriends, getLoginStatus, login, testAPI;
   window.fbAsyncInit = function() {
     return FB.init({
       appId: "463955970313826",
@@ -15,6 +14,7 @@ define(['jquery'], function($) {
     });
   };
   login = function(callback) {
+    var _this = this;
     return FB.login(function(response) {
       if (response.authResponse) {
         return callback.call(_this);
@@ -35,9 +35,9 @@ define(['jquery'], function($) {
       if (response.status === "connected") {
         return callback.call(_this);
       } else if (response.status === "not_authorized") {
-        return login(callback);
+        return login.call(_this, callback);
       } else {
-        return login(callback);
+        return login.call(_this, callback);
       }
     });
   };
