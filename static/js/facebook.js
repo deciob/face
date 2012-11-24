@@ -32,6 +32,8 @@ define(['jquery'], function($) {
     });
   };
   getLoginStatus = function(callback) {
+    var _this = this;
+    console.debug("facebook:getLoginStatus", this);
     return FB.getLoginStatus(function(response) {
       if (response.status === "connected") {
         console.debug("connected");
